@@ -36,11 +36,17 @@ type Answer = {
 const Form: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
   const [answers, setAnswers] = useState<Answer[]>([]);
+  const [isFormCompleted, setIsFormCompleted] = useState<boolean>(false);
 
   const handleAnswer = (answer: string) => {
     const questionId = questions[currentQuestionIndex].id;
     setAnswers([...answers, { questionId, answer }]);
-    setCurrentQuestionIndex(currentQuestionIndex + 1);
+
+    if (currentQuestionIndex < questions.length - 1) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+    } else {
+      setIsFormCompleted(true);
+    }
   };
   return (
     <div>
@@ -49,13 +55,20 @@ const Form: React.FC = () => {
           Answer a few quick and easy questions from our Genovian pharmacists to
           see what treatments you're eligible for
         </h1>
-        <>
-          <p>{questions[currentQuestionIndex].text}</p>
+        {!isFormCompleted ? (
+          <>
+            <p>{questions[currentQuestionIndex].text}</p>
+            <div>
+              <button onClick={() => handleAnswer("Yes")}>Yes</button>
+              <button onClick={() => handleAnswer("No")}>No</button>
+            </div>
+          </>
+        ) : (
           <div>
-            <button onClick={() => handleAnswer("Yes")}>Yes</button>
-            <button onClick={() => handleAnswer("No")}>No</button>
+            <h2>Thank you!</h2>
+            <p>Your responses have been recorded.</p>
           </div>
-        </>
+        )}
       </div>
     </div>
   );
