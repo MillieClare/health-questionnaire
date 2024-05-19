@@ -27,6 +27,7 @@ I uploaded the work to GitHub so you could how I broke down the task and to easi
 - I am using React because this is a modern and flexible framework that lets me create and use functional components easily.
 - I am using Typescript which will allow me to strictly type my code in order for it to be more robust.
 - I am using Tailwind CSS to style the form, and to make the page responsive for devices of various sizes.
+- I am on node version v18.8.0
 
 ### The UI layout
 
