@@ -72,27 +72,48 @@ const Form: React.FC = () => {
   }, [isFormCompleted, answers]);
 
   return (
-    <div>
-      <div>
-        <h1>
+    <div className="flex flex-col justify-center items-center flex-grow bg-gray-100 p-4">
+      <div className="w-full max-w-xl bg-white rounded-lg shadow-lg p-6">
+        <h1 className="text-2xl sm:text-3xl font-bold mb-6">
           Answer a few quick and easy questions from our Genovian pharmacists to
           see what treatments you're eligible for
         </h1>
         {!isFormCompleted ? (
           <>
-            <p>{questions[currentQuestionIndex].text}</p>
-            <div>
-              <button onClick={() => handleAnswer("Yes")}>Yes</button>
-              <button onClick={() => handleAnswer("No")}>No</button>
+            <div className="mb-6">
+              <p className="text-lg sm:text-xl mb-4">
+                {questions[currentQuestionIndex].text}
+              </p>
+              <div className="flex space-x-4">
+                <button
+                  onClick={() => handleAnswer("Yes")}
+                  className="bg-sky-400 text-white py-2 px-4 rounded hover:bg-sky-500"
+                >
+                  Yes
+                </button>
+                <button
+                  onClick={() => handleAnswer("No")}
+                  className="bg-rose-400 text-white py-2 px-4 rounded hover:bg-red-500"
+                >
+                  No
+                </button>
+              </div>
             </div>
           </>
         ) : (
           <div>
-            <h2>Thank you!</h2>
-            <p>Your responses have been recorded.</p>
-            <div>
-              <button onClick={() => resetForm()}>Reset form</button>
-            </div>
+            <h2 className="text-xl sm:text-2xl font-bold mb-4">Thank you!</h2>
+            <p className="text-grey-700 mb-4">
+              Your responses have been recorded.
+            </p>
+            <>
+              <button
+                onClick={() => resetForm()}
+                className="bg-gray-500 text-white py-2 px-4 rounded hover:bg-gray-600"
+              >
+                Reset form
+              </button>
+            </>
           </div>
         )}
       </div>
