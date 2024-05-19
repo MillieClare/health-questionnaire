@@ -91,7 +91,7 @@ const Form: React.FC = () => {
 
   return (
     <div className="flex flex-col justify-center items-center flex-grow bg-gray-100 p-4">
-      <div className="w-full max-w-xl bg-white rounded-lg shadow-lg p-6">
+      <div className="w-full max-w-xl bg-white rounded-lg shadow-lg p-6 sm:p-8">
         <h1 className="text-2xl sm:text-3xl font-bold mb-6">
           Answer a few quick and easy questions from our Genovian pharmacists to
           see what treatments you're eligible for
