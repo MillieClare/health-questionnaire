@@ -88,7 +88,6 @@ const Form: React.FC = () => {
       }
     }
   }, [isFormCompleted, answers]);
-  console.log(currentQuestionIndex);
 
   return (
     <div className="flex flex-col justify-center items-center flex-grow bg-gray-100 p-4">
