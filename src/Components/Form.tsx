@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { submitAnswers } from "../utils/submitAnswers";
 
 type Question = {
   id: number;
@@ -33,9 +34,11 @@ type Answer = {
   answer: string;
 };
 
+const initialAnswers: Answer[] = [];
+
 const Form: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
-  const [answers, setAnswers] = useState<Answer[]>([]);
+  const [answers, setAnswers] = useState<Answer[]>(initialAnswers);
   const [isFormCompleted, setIsFormCompleted] = useState<boolean>(false);
 
   const handleAnswer = (answer: string) => {
@@ -48,6 +51,26 @@ const Form: React.FC = () => {
       setIsFormCompleted(true);
     }
   };
+
+  const resetForm = () => {
+    setAnswers(initialAnswers);
+    setCurrentQuestionIndex(0);
+    setIsFormCompleted(false);
+    console.log("Form reset");
+  };
+
+  useEffect(() => {
+    // using try/catch because data is only handled locally & is synchronous.
+    if (isFormCompleted) {
+      try {
+        submitAnswers(answers);
+        console.log("Answers submitted successfully.");
+      } catch (error) {
+        console.error("Failed to submit answers:", error);
+      }
+    }
+  }, [isFormCompleted, answers]);
+
   return (
     <div>
       <div>
@@ -67,6 +90,9 @@ const Form: React.FC = () => {
           <div>
             <h2>Thank you!</h2>
             <p>Your responses have been recorded.</p>
+            <div>
+              <button onClick={() => resetForm()}>Reset form</button>
+            </div>
           </div>
         )}
       </div>
