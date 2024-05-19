@@ -34,6 +34,7 @@ I uploaded the work to GitHub so you could how I broke down the task and to easi
 - Consultation.tsx imports the three main components (while Form imports ProgressBar) in order to keep App.tsx clean. I also envision steps 1, 2, 4 & 5 being created in the same manner, so that the components like Header & Footer can be reused.
 - The form automatically submits when all 5 questions have been answered, though the user is able to go back to previous questions to change their answers. On the first question this button is disabled.
 - The user is also able to reset the form once they have submitted their answers. In a real-life scenario, I would assume that instead there would be a link to continue to the next step in the process (or a 'Submit' button instead which would navigate on form submission)
+- I also chose blue for the 'Yes' button instead of green to be more accessible to colour-blind users.
 
 ### Finally
 
