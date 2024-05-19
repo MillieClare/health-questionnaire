@@ -35,6 +35,13 @@ type Answer = {
 
 const Form: React.FC = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+  const [answers, setAnswers] = useState<Answer[]>([]);
+
+  const handleAnswer = (answer: string) => {
+    const questionId = questions[currentQuestionIndex].id;
+    setAnswers([...answers, { questionId, answer }]);
+    setCurrentQuestionIndex(currentQuestionIndex + 1);
+  };
   return (
     <div>
       <div>
@@ -45,8 +52,8 @@ const Form: React.FC = () => {
         <>
           <p>{questions[currentQuestionIndex].text}</p>
           <div>
-            <button onClick={() => console.log("yes")}>Yes</button>
-            <button onClick={() => console.log("no")}>No</button>
+            <button onClick={() => handleAnswer("Yes")}>Yes</button>
+            <button onClick={() => handleAnswer("No")}>No</button>
           </div>
         </>
       </div>
