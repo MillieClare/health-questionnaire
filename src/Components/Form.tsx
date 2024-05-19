@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { submitAnswers } from "../utils/submitAnswers";
+import ProgressBar from "./ProgressBar";
 
 type Question = {
   id: number;
@@ -43,7 +44,18 @@ const Form: React.FC = () => {
 
   const handleAnswer = (answer: string) => {
     const questionId = questions[currentQuestionIndex].id;
-    setAnswers([...answers, { questionId, answer }]);
+    const existingAnswerIndex = answers.findIndex(
+      (answer) => answer.questionId === questionId
+    );
+
+    if (existingAnswerIndex !== -1) {
+      const newAnswers = answers.map((answers, index) =>
+        index === existingAnswerIndex ? { ...answers, answer } : answers
+      );
+      setAnswers(newAnswers);
+    } else {
+      setAnswers([...answers, { questionId, answer }]);
+    }
 
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex(currentQuestionIndex + 1);
@@ -59,6 +71,12 @@ const Form: React.FC = () => {
     console.log("Form reset");
   };
 
+  const handlePrevious = () => {
+    if (currentQuestionIndex > 0) {
+      setCurrentQuestionIndex(currentQuestionIndex - 1);
+    }
+  };
+
   useEffect(() => {
     // using try/catch because data is only handled locally & is synchronous.
     if (isFormCompleted) {
@@ -70,6 +88,7 @@ const Form: React.FC = () => {
       }
     }
   }, [isFormCompleted, answers]);
+  console.log(currentQuestionIndex);
 
   return (
     <div className="flex flex-col justify-center items-center flex-grow bg-gray-100 p-4">
@@ -78,6 +97,10 @@ const Form: React.FC = () => {
           Answer a few quick and easy questions from our Genovian pharmacists to
           see what treatments you're eligible for
         </h1>
+        <ProgressBar
+          currentStep={currentQuestionIndex + 1}
+          totalSteps={questions.length}
+        />
         {!isFormCompleted ? (
           <>
             <div className="mb-6">
@@ -98,6 +121,19 @@ const Form: React.FC = () => {
                   No
                 </button>
               </div>
+            </div>
+            <div className="flex justify-between">
+              <button
+                onClick={handlePrevious}
+                disabled={currentQuestionIndex === 0}
+                className={`py-2 px-4 rounded ${
+                  currentQuestionIndex === 0
+                    ? "bg-gray-300"
+                    : "bg-gray-500 hover:bg-gray-600 text-white"
+                } focus:outline-none focus:ring-2 focus:ring-gray-500`}
+              >
+                Previous
+              </button>
             </div>
           </>
         ) : (
