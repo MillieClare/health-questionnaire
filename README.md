@@ -14,33 +14,28 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.\
 You will also see any lint errors in the console.
 
-### `npm test`
+### Some notes
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Hi!
 
-### `npm run build`
+Firstly, thank you for taking the time to look at my results for this project. Secondly, you can run this application following the above instructions. Also, I love the Princess Diaries and wanted to run a little bit with the Genovia theme... I recognise that I am the _only_ person who thinks I'm funny. But I had fun making this nonetheless :)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+I uploaded the work to GitHub so you could how I broke down the task and to easily see the code, I will make the repository private after the follow up meeting.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Frontend
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- I am using React because this is a modern and flexible framework that lets me create and use functional components easily.
+- I am using Typescript which will allow me to strictly type my code in order for it to be more robust.
+- I am using Tailwind CSS to style the form, and to make the page responsive for devices of various sizes.
 
-### `npm run eject`
+## The UI layout
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- Consists of the Form, ProgressBar Header & Footer as separate components.
+- Consultation.tsx imports the three main components (while Form imports ProgressBar) in order to keep App.tsx clean. I also envision steps 1, 2, 4 & 5 being created in the same manner, so that the components like Header & Footer can be reused.
+- The form automatically submits when all 5 questions have been answered, though the user is able to go back to previous questions to change their answers. On the first question this button is disabled.
+- The user is also able to reset the form once they have submitted their answers. In a real-life scenario, I would assume that instead there would be a link to continue to the next step in the process (or a 'Submit' button instead which would navigate on form submission)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Finally
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+I have included a demo for the page below.
+![](https://github.com/MillieClare/heliosx-take-home-test/blob/src/assets/heliosX-test.gif)
